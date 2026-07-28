@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Welcome",
+    "scroll": "Scroll to explore"
+  },
+  "about": {
+    "title": "Who I Am",
+    "name": "SangHyup Lee",
+    "role": "Software Engineer",
+    "bio": "I'm a developer who enjoys building thoughtful, well-crafted software. Replace this text with your own introduction.",
+    "highlights": ["Highlight one", "Highlight two", "Highlight three"]
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Feel free to reach out",
+    "email": "aidenshlee393@gmail.com",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "projects": {
+    "tabLabel": "Projects",
+    "title": "Selected Work",
+    "close": "Close",
+    "items": [
+      {
+        "name": "Project One",
+        "description": "A short description of what this project does and the stack used.",
+        "link": "https://github.com/yourname/project-one"
+      },
+      {
+        "name": "Project Two",
+        "description": "A short description of what this project does and the stack used.",
+        "link": "https://github.com/yourname/project-two"
+      },
+      {
+        "name": "Project Three",
+        "description": "A short description of what this project does and the stack used.",
+        "link": "https://github.com/yourname/project-three"
+      }
+    ]
+  }
+}

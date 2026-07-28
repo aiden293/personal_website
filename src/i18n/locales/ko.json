@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "홈",
+    "about": "소개",
+    "contact": "연락처"
+  },
+  "hero": {
+    "greeting": "환영합니다",
+    "scroll": "스크롤하여 더 보기"
+  },
+  "about": {
+    "title": "저는 이런 사람입니다",
+    "name": "이름을 입력하세요",
+    "role": "소프트웨어 엔지니어",
+    "bio": "저는 정성스럽고 잘 만들어진 소프트웨어를 만드는 것을 좋아하는 개발자입니다. 이 텍스트를 본인 소개로 바꿔주세요.",
+    "highlights": ["강점 하나", "강점 둘", "강점 셋"]
+  },
+  "contact": {
+    "title": "연락하기",
+    "subtitle": "편하게 연락 주세요",
+    "email": "your.email@example.com",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "projects": {
+    "tabLabel": "프로젝트",
+    "title": "주요 프로젝트",
+    "close": "닫기",
+    "items": [
+      {
+        "name": "프로젝트 하나",
+        "description": "이 프로젝트가 무엇을 하는지, 어떤 기술 스택을 썼는지 짧게 설명하세요.",
+        "link": "https://github.com/yourname/project-one"
+      },
+      {
+        "name": "프로젝트 둘",
+        "description": "이 프로젝트가 무엇을 하는지, 어떤 기술 스택을 썼는지 짧게 설명하세요.",
+        "link": "https://github.com/yourname/project-two"
+      },
+      {
+        "name": "프로젝트 셋",
+        "description": "이 프로젝트가 무엇을 하는지, 어떤 기술 스택을 썼는지 짧게 설명하세요.",
+        "link": "https://github.com/yourname/project-three"
+      }
+    ]
+  }
+}
