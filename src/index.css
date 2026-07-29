@@ -5,8 +5,10 @@
   --text-muted: #9b9baa;
   --accent: #7c5cff;
   --accent-soft: rgba(124, 92, 255, 0.15);
-  /* Keep in sync with TRANSITION_MS in HeroStageContext.tsx */
+  /* Keep in sync with CURTAIN_DURATION_MS in HeroStageContext.tsx */
   --curtain-duration: 900ms;
+  /* Keep in sync with TEXT_FADE_MS in HeroStageContext.tsx */
+  --hero-text-duration: 400ms;
   color-scheme: dark;
 }
 

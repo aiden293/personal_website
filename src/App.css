@@ -21,17 +21,20 @@
   align-items: center;
   justify-content: space-between;
   padding: 22px 48px;
+  background: rgba(28, 28, 34, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.3s ease,
     border-color 0.4s ease;
-  border-bottom: 1px solid transparent;
 }
 
 .navbar--scrolled {
-  background: rgba(11, 11, 16, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(20, 20, 25, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   padding: 16px 48px;
-  border-bottom-color: rgba(255, 255, 255, 0.06);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 .navbar__brand {
@@ -135,14 +138,63 @@
   transform: translateY(100%);
 }
 
+/* Welcome-slide background slideshow: two full-cover images crossfading,
+   rendered once inside each curtain half so the clip-path split keeps them
+   seamless. A dark overlay keeps the "Welcome" text legible over photos. */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 11, 16, 0.55), rgba(11, 11, 16, 0.75));
+}
+
+.hero-bg__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.hero-bg__img.is-active {
+  opacity: 1;
+}
+
+/* Welcome text: a separate layer above both curtain halves, so it slides
+   down and fades out as its own step, before the curtain below it splits —
+   rather than being clipped in half along with the curtain. */
+.hero-stage__text {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  text-align: center;
+  transition: transform var(--hero-text-duration) ease, opacity var(--hero-text-duration) ease;
+}
+
+.hero-stage__text.is-hidden {
+  opacity: 0;
+  transform: translateY(60px);
+  pointer-events: none;
+}
+
 .hero__content h1 {
   font-size: clamp(3rem, 9vw, 7rem);
   font-weight: 800;
   letter-spacing: -0.02em;
-  background: linear-gradient(180deg, #ffffff, #9d8cff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ffffff;
 }
 
 .hero-stage__scroll {
@@ -150,7 +202,7 @@
   bottom: 48px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 4;
   display: flex;
   flex-direction: column;
   align-items: center;

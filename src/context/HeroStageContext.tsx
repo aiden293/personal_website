@@ -13,6 +13,7 @@ type Stage = 'welcome' | 'about'
 interface HeroStageValue {
   stage: Stage
   locked: boolean
+  textHidden: boolean
   projectsOpen: boolean
   goHome: () => void
   goAbout: () => void
@@ -24,18 +25,22 @@ interface HeroStageValue {
 const HeroStageContext = createContext<HeroStageValue | null>(null)
 
 // Keep in sync with --curtain-duration in index.css.
-const TRANSITION_MS = 900
+const CURTAIN_DURATION_MS = 900
+// Keep in sync with --hero-text-duration in index.css.
+const TEXT_FADE_MS = 400
 const WHEEL_THRESHOLD = 4
 const TOUCH_THRESHOLD = 40
 
 export function HeroStageProvider({ children }: { children: ReactNode }) {
   const [stage, setStage] = useState<Stage>('welcome')
   const [locked, setLocked] = useState(true)
+  const [textHidden, setTextHidden] = useState(false)
   const [projectsOpen, setProjectsOpen] = useState(false)
 
   const stageRef = useRef<Stage>('welcome')
   const lockedRef = useRef(true)
   const busyRef = useRef(false)
+  const textHiddenRef = useRef(false)
   const projectsOpenRef = useRef(false)
 
   const openProjects = () => {
@@ -48,13 +53,36 @@ export function HeroStageProvider({ children }: { children: ReactNode }) {
     setProjectsOpen(false)
   }
 
+  const setTextHiddenBoth = (value: boolean) => {
+    textHiddenRef.current = value
+    setTextHidden(value)
+  }
+
+  // Opening (welcome -> about): the text slides down/fades out first, then
+  // — once it's clear — the curtain splits underneath it. Closing (about ->
+  // welcome) runs the reverse in the mirrored order: the curtain closes
+  // first, then the text fades back in on top of it.
   const animateTo = (next: Stage) => {
     busyRef.current = true
-    stageRef.current = next
-    setStage(next)
-    window.setTimeout(() => {
-      busyRef.current = false
-    }, TRANSITION_MS)
+    if (next === 'about') {
+      setTextHiddenBoth(true)
+      window.setTimeout(() => {
+        stageRef.current = next
+        setStage(next)
+      }, TEXT_FADE_MS)
+      window.setTimeout(() => {
+        busyRef.current = false
+      }, TEXT_FADE_MS + CURTAIN_DURATION_MS)
+    } else {
+      stageRef.current = next
+      setStage(next)
+      window.setTimeout(() => {
+        setTextHiddenBoth(false)
+      }, CURTAIN_DURATION_MS)
+      window.setTimeout(() => {
+        busyRef.current = false
+      }, CURTAIN_DURATION_MS + TEXT_FADE_MS)
+    }
   }
 
   const setLockedBoth = (value: boolean) => {
@@ -170,6 +198,7 @@ export function HeroStageProvider({ children }: { children: ReactNode }) {
     closeProjects()
     stageRef.current = 'about'
     setStage('about')
+    setTextHiddenBoth(true)
     setLockedBoth(false)
     requestAnimationFrame(() => {
       document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
@@ -181,6 +210,7 @@ export function HeroStageProvider({ children }: { children: ReactNode }) {
       value={{
         stage,
         locked,
+        textHidden,
         projectsOpen,
         goHome,
         goAbout,
