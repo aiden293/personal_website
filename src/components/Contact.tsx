@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import { SOCIAL_LINKS } from '../lib/socialLinks'
 
 export default function Contact() {
   const { t } = useTranslation()
@@ -19,10 +20,10 @@ export default function Contact() {
           {t('contact.email')}
         </a>
         <div className="contact__links">
-          <a href="https://github.com/yourname" target="_blank" rel="noreferrer">
+          <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
             {t('contact.github')}
           </a>
-          <a href="https://linkedin.com/in/yourname" target="_blank" rel="noreferrer">
+          <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noreferrer">
             {t('contact.linkedin')}
           </a>
         </div>

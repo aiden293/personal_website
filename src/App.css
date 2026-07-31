@@ -113,6 +113,9 @@
 
 .hero-stage__about {
   z-index: 1;
+  justify-content: flex-start;
+  padding-left: clamp(24px, 7vw, 100px);
+  text-align: left;
 }
 
 .hero-stage__curtain {
@@ -279,21 +282,29 @@
 .about__bio {
   color: var(--text-muted);
   line-height: 1.7;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
+  max-width: 480px;
 }
 
-.about__highlights {
+.about__socials {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
+  align-items: center;
+  gap: 24px;
 }
 
-.about__highlights li {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-size: 0.9rem;
+.about__socials a {
+  color: var(--text-muted);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.about__socials a:hover {
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.about__socials svg {
+  width: 26px;
+  height: 26px;
 }
 
 /* Projects: a slim edge tab (peeking in from the right, like a bookmark)
