@@ -98,6 +98,15 @@
   height: 100vh;
   overflow: hidden;
   background: radial-gradient(circle at 50% 30%, var(--bg-alt), var(--bg) 70%);
+  transition: transform 700ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Pushed left in sync with the Projects panel sliding in from the right,
+   so it reads as a carousel push rather than a new layer just appearing
+   on top of a static screen. Stops peek-width short of fully off-screen so
+   a strip of it stays visible (and clickable, via .hero-peek) on the left. */
+.hero-stage--pushed {
+  transform: translateX(calc(-100% + var(--peek-width)));
 }
 
 .hero-stage__about,
@@ -307,109 +316,69 @@
   height: 26px;
 }
 
-/* Projects: a slim edge tab (peeking in from the right, like a bookmark)
-   that expands into a fullscreen panel via a clip-path wipe when clicked. */
-.projects-tab {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  z-index: 50;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  background: var(--bg-alt);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-right: none;
-  border-radius: 10px 0 0 10px;
-  padding: 22px 12px;
-  color: var(--text);
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  transition: opacity 0.3s ease, transform 0.3s ease, background 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.projects-tab:hover {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-}
-
-.projects-tab--hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-50%) translateX(16px);
-}
-
+/* Projects: always rendered, resting mostly off-screen so only a
+   peek-width sliver shows on the right (matching the hero stage's own
+   peek on the left once this becomes the open/main screen). Clicking that
+   sliver slides the panel to fully open while the hero stage behind it
+   pushes out to the left (.hero-stage--pushed) — a carousel push rather
+   than a new layer appearing on top. */
 .projects-panel {
   position: fixed;
   inset: 0;
-  /* Above the navbar (100) so the fullscreen takeover fully covers it,
-     rather than overlapping its controls (e.g. the language toggle). */
-  z-index: 110;
-  background: var(--bg-alt);
-  clip-path: inset(0 0 0 100%);
-  transition: clip-path 700ms cubic-bezier(0.65, 0, 0.35, 1);
+  /* Below the navbar (100), same as the hero stage, so the navbar stays on
+     top of whichever screen is currently "main" instead of being covered. */
+  z-index: 40;
+  background: #ffffff;
+  transform: translateX(calc(100% - var(--peek-width)));
+  transition: transform 700ms cubic-bezier(0.65, 0, 0.35, 1);
   overflow-y: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 120px 24px;
+  cursor: pointer;
 }
 
 .projects-panel.is-open {
-  clip-path: inset(0 0 0 0);
+  /* Stops peek-width short of the left edge so the pushed-away screen
+     underneath keeps peeking through — see .hero-peek for the click
+     target that lets people navigate back via that sliver. */
+  transform: translateX(var(--peek-width));
+  cursor: default;
 }
 
-.projects-panel__close {
-  position: fixed;
-  top: 24px;
-  right: 32px;
-  z-index: 111;
-  font-size: 2rem;
-  line-height: 1;
-  color: var(--text-muted);
-  transition: color 0.25s ease;
-}
-
-.projects-panel__close:hover {
-  color: var(--text);
-}
-
-.projects-panel__inner {
-  max-width: 720px;
-  width: 100%;
-  text-align: center;
-}
-
-.projects-panel__list {
+.projects-panel__peek-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--peek-width);
   display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-top: 24px;
-  text-align: left;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 48px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-.projects-panel__item {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  padding: 24px;
+.projects-panel__peek-icon svg {
+  width: 22px;
+  height: 22px;
+  color: #1c1c22;
 }
 
-.projects-panel__item h3 {
-  font-size: 1.3rem;
-  margin-bottom: 8px;
+.projects-panel.is-open .projects-panel__peek-icon {
+  opacity: 0;
 }
 
-.projects-panel__item p {
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 12px;
+.hero-peek {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--peek-width);
+  z-index: 45;
+  pointer-events: none;
 }
 
-.projects-panel__item a {
-  color: var(--accent);
-  font-weight: 600;
+.hero-peek.is-visible {
+  pointer-events: auto;
 }
 
 /* Contact */

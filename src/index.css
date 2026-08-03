@@ -9,6 +9,9 @@
   --curtain-duration: 900ms;
   /* Keep in sync with TEXT_FADE_MS in HeroStageContext.tsx */
   --hero-text-duration: 400ms;
+  /* Width of the "peek" strip left visible on each side of the Projects
+     carousel push, matching the closed Projects tab's own width. */
+  --peek-width: clamp(120px, 12vw, 180px);
   color-scheme: dark;
 }
 

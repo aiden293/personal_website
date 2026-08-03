@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHeroStage } from '../context/HeroStageContext'
-import ProjectsPanel from './ProjectsPanel'
 import { EmailIcon, GitHubIcon, LinkedInIcon } from './icons'
 import { SOCIAL_LINKS } from '../lib/socialLinks'
 import bostonImg from '../assets/boston.jpg'
@@ -27,7 +26,7 @@ function HeroBackground({ activeIndex }: { activeIndex: number }) {
 
 export default function HeroStage() {
   const { t } = useTranslation()
-  const { stage, textHidden } = useHeroStage()
+  const { stage, textHidden, projectsOpen } = useHeroStage()
   const isOpen = stage === 'about'
 
   const [slideIndex, setSlideIndex] = useState(0)
@@ -40,8 +39,7 @@ export default function HeroStage() {
   }, [])
 
   return (
-    <div id="hero-stage" className="hero-stage">
-      <ProjectsPanel />
+    <div id="hero-stage" className={`hero-stage ${projectsOpen ? 'hero-stage--pushed' : ''}`}>
       <div className="hero-stage__about">
         <div className="about__content">
           <p className="about__eyebrow">{t('about.title')}</p>
