@@ -10,11 +10,16 @@ import {
 
 type Stage = 'welcome' | 'about'
 
+// Screens stacked after About, each sliding up to cover the previous one:
+// 0 = About (base), 1 = Skills, 2 = Contact. Add another screen by bumping
+// MAX_PANEL and giving it panelIndex 3 in its own component.
+const MAX_PANEL = 2
+
 interface HeroStageValue {
   stage: Stage
-  locked: boolean
   textHidden: boolean
   projectsOpen: boolean
+  panelIndex: number
   goHome: () => void
   goAbout: () => void
   goContact: () => void
@@ -28,20 +33,22 @@ const HeroStageContext = createContext<HeroStageValue | null>(null)
 const CURTAIN_DURATION_MS = 900
 // Keep in sync with --hero-text-duration in index.css.
 const TEXT_FADE_MS = 400
+// Keep in sync with --panel-duration in index.css.
+const PANEL_DURATION_MS = 800
 const WHEEL_THRESHOLD = 4
 const TOUCH_THRESHOLD = 40
 
 export function HeroStageProvider({ children }: { children: ReactNode }) {
   const [stage, setStage] = useState<Stage>('welcome')
-  const [locked, setLocked] = useState(true)
   const [textHidden, setTextHidden] = useState(false)
   const [projectsOpen, setProjectsOpen] = useState(false)
+  const [panelIndex, setPanelIndex] = useState(0)
 
   const stageRef = useRef<Stage>('welcome')
-  const lockedRef = useRef(true)
   const busyRef = useRef(false)
   const textHiddenRef = useRef(false)
   const projectsOpenRef = useRef(false)
+  const panelIndexRef = useRef(0)
 
   const openProjects = () => {
     projectsOpenRef.current = true
@@ -51,6 +58,11 @@ export function HeroStageProvider({ children }: { children: ReactNode }) {
   const closeProjects = () => {
     projectsOpenRef.current = false
     setProjectsOpen(false)
+  }
+
+  const setPanelIndexBoth = (value: number) => {
+    panelIndexRef.current = value
+    setPanelIndex(value)
   }
 
   const setTextHiddenBoth = (value: boolean) => {
@@ -85,66 +97,49 @@ export function HeroStageProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const setLockedBoth = (value: boolean) => {
-    lockedRef.current = value
-    // Applied synchronously (not just via the effect below) so that when a
-    // wheel event releases the lock without calling preventDefault, the
-    // browser's native scroll for that same event already sees the
-    // updated overflow — React's state-driven re-render would land one
-    // frame too late for that event's default action.
-    document.body.style.overflow = value ? 'hidden' : ''
-    setLocked(value)
+  const stepPanel = (delta: 1 | -1) => {
+    busyRef.current = true
+    setPanelIndexBoth(panelIndexRef.current + delta)
+    window.setTimeout(() => {
+      busyRef.current = false
+    }, PANEL_DURATION_MS)
   }
 
-  // useLayoutEffect so the lock is applied before paint — avoids a flash of
-  // native scrollability on first mount.
+  // Body scroll is locked for the site's whole lifetime — Welcome, About,
+  // Skills, Contact and Projects are all fixed-position overlays driven by
+  // transform, not by real document scroll, so there's never anything to
+  // scroll (and never a native scrollbar to show).
   useLayoutEffect(() => {
-    document.body.style.overflow = locked ? 'hidden' : ''
+    document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = ''
     }
-  }, [locked])
+  }, [])
 
   useEffect(() => {
-    // Single wheel-gesture step: while locked, one wheel-down advances the
-    // curtain; a second wheel-down (once fully revealed) releases the lock
-    // and nudges the page into normal scrolling. Wheel-up at the very top
-    // after release re-locks and reverses the curtain.
+    // Single wheel-gesture step, always locked: on Welcome, wheel-down
+    // opens the curtain to About. From About onward, wheel-down steps
+    // forward one panel at a time (About -> Skills -> Contact), each
+    // sliding up to cover the previous; wheel-up steps back the same way,
+    // and wheel-up from About closes the curtain to Welcome.
     const handleDelta = (deltaY: number, event: Event) => {
       if (Math.abs(deltaY) < WHEEL_THRESHOLD) return
       // While the projects panel is open, let it scroll its own content
       // natively — the hero curtain shouldn't react to this gesture.
       if (projectsOpenRef.current) return
 
-      if (busyRef.current) {
-        if (lockedRef.current) event.preventDefault()
-        return
-      }
+      event.preventDefault()
+      if (busyRef.current) return
 
-      if (lockedRef.current) {
-        if (deltaY > 0) {
-          event.preventDefault()
-          if (stageRef.current === 'welcome') {
-            animateTo('about')
-          } else {
-            // The browser resolves the wheel-scroll target via hit-testing
-            // before dispatch, so un-hiding overflow mid-event doesn't let
-            // this same event fall through natively — nudge it ourselves.
-            setLockedBoth(false)
-            window.scrollBy({ top: deltaY, behavior: 'auto' })
-          }
-        } else {
-          event.preventDefault()
-          if (stageRef.current === 'about') {
-            animateTo('welcome')
-          }
+      if (deltaY > 0) {
+        if (stageRef.current === 'welcome') {
+          animateTo('about')
+        } else if (panelIndexRef.current < MAX_PANEL) {
+          stepPanel(1)
         }
-        return
-      }
-
-      if (deltaY < 0 && window.scrollY <= 0) {
-        event.preventDefault()
-        setLockedBoth(true)
+      } else if (panelIndexRef.current > 0) {
+        stepPanel(-1)
+      } else if (stageRef.current === 'about') {
         animateTo('welcome')
       }
     }
@@ -183,35 +178,32 @@ export function HeroStageProvider({ children }: { children: ReactNode }) {
 
   const goHome = () => {
     closeProjects()
-    window.scrollTo({ top: 0, behavior: 'auto' })
-    setLockedBoth(true)
+    setPanelIndexBoth(0)
     if (stageRef.current !== 'welcome') animateTo('welcome')
   }
 
   const goAbout = () => {
-    window.scrollTo({ top: 0, behavior: 'auto' })
-    setLockedBoth(true)
+    setPanelIndexBoth(0)
     if (stageRef.current !== 'about') animateTo('about')
   }
 
   const goContact = () => {
     closeProjects()
-    stageRef.current = 'about'
-    setStage('about')
-    setTextHiddenBoth(true)
-    setLockedBoth(false)
-    requestAnimationFrame(() => {
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-    })
+    if (stageRef.current !== 'about') {
+      stageRef.current = 'about'
+      setStage('about')
+      setTextHiddenBoth(true)
+    }
+    setPanelIndexBoth(MAX_PANEL)
   }
 
   return (
     <HeroStageContext.Provider
       value={{
         stage,
-        locked,
         textHidden,
         projectsOpen,
+        panelIndex,
         goHome,
         goAbout,
         goContact,

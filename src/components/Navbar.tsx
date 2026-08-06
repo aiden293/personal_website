@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHeroStage } from '../context/HeroStageContext'
 
@@ -7,30 +6,13 @@ const SECTIONS: Section[] = ['home', 'about', 'contact']
 
 export default function Navbar() {
   const { t, i18n } = useTranslation()
-  const { stage, locked, goHome, goAbout, goContact } = useHeroStage()
-  const [scrolled, setScrolled] = useState(false)
-  const [pastHero, setPastHero] = useState(false)
+  const { stage, panelIndex, goHome, goAbout, goContact } = useHeroStage()
 
-  useEffect(() => {
-    let ticking = false
-    const compute = () => {
-      setScrolled(window.scrollY > 40)
-      const contact = document.getElementById('contact')
-      setPastHero(!!contact && contact.getBoundingClientRect().top < window.innerHeight * 0.5)
-      ticking = false
-    }
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true
-        requestAnimationFrame(compute)
-      }
-    }
-    compute()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  const active: Section = !locked && pastHero ? 'contact' : stage === 'welcome' ? 'home' : 'about'
+  // Nothing here scrolls anymore — Welcome/About/Skills/Contact are all
+  // fixed overlays swapped via transform, so "scrolled" and "active" are
+  // both derived straight from that state instead of a scroll listener.
+  const scrolled = stage === 'about'
+  const active: Section = panelIndex >= 2 ? 'contact' : stage === 'welcome' ? 'home' : 'about'
 
   const toggleLanguage = () => {
     i18n.changeLanguage(i18n.language === 'en' ? 'ko' : 'en')

@@ -14,6 +14,26 @@
     "role": "Software Engineer",
     "bio": "I'm a developer who enjoys building thoughtful, well-crafted software. Replace this text with your own introduction."
   },
+  "skills": {
+    "eyebrow": "What I Use",
+    "title": "Skills & Experience",
+    "items": [
+      "TypeScript",
+      "React",
+      "Node.js",
+      "Python",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "Git"
+    ],
+    "timeline": [
+      { "year": "2021", "label": "Milestone one" },
+      { "year": "2022", "label": "Milestone two" },
+      { "year": "2023", "label": "Milestone three" },
+      { "year": "2024", "label": "Milestone four" }
+    ]
+  },
   "contact": {
     "title": "Get in Touch",
     "subtitle": "Feel free to reach out",

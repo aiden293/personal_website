@@ -14,6 +14,26 @@
     "role": "소프트웨어 엔지니어",
     "bio": "저는 정성스럽고 잘 만들어진 소프트웨어를 만드는 것을 좋아하는 개발자입니다."
   },
+  "skills": {
+    "eyebrow": "사용하는 기술",
+    "title": "기술 스택 & 경력",
+    "items": [
+      "TypeScript",
+      "React",
+      "Node.js",
+      "Python",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "Git"
+    ],
+    "timeline": [
+      { "year": "2021", "label": "마일스톤 하나" },
+      { "year": "2022", "label": "마일스톤 둘" },
+      { "year": "2023", "label": "마일스톤 셋" },
+      { "year": "2024", "label": "마일스톤 넷" }
+    ]
+  },
   "contact": {
     "title": "연락하기",
     "subtitle": "편하게 연락 주세요",

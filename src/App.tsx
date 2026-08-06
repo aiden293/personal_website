@@ -3,6 +3,7 @@ import { HeroStageProvider } from './context/HeroStageContext'
 import Navbar from './components/Navbar'
 import HeroStage from './components/HeroStage'
 import ProjectsPanel from './components/ProjectsPanel'
+import Skills from './components/Skills'
 import Contact from './components/Contact'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           ancestor would create (hero-stage gets pushed left when this
           panel opens — see .hero-stage--pushed in App.css). */}
       <ProjectsPanel />
+      <Skills />
       <Contact />
     </HeroStageProvider>
   )

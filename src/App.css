@@ -1,13 +1,139 @@
-/* Generic full-viewport section (used by normal-flow sections like Contact) */
-.section {
-  min-height: 100vh;
+/* Post-About screens: fixed overlays stacked in order (Skills, then
+   Contact), each sliding up over whatever's behind it and back down to
+   reveal it again, driven by panelIndex — not real document scroll, so
+   there's nothing to scroll and no native scrollbar ever appears. */
+.skills-panel,
+.contact-panel {
+  position: fixed;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
   padding: 120px 24px;
   text-align: center;
+  transform: translateY(100%);
+  transition: transform var(--panel-duration) cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.skills-panel {
+  z-index: 4;
+  background: var(--bg-alt);
+}
+
+.contact-panel {
+  z-index: 5;
+  background: var(--bg);
+}
+
+.skills-panel.is-open,
+.contact-panel.is-open {
+  transform: translateY(0);
+}
+
+.skills-panel__content {
+  max-width: 720px;
+  width: 100%;
+}
+
+/* Skills conveyor belt: the item list is rendered twice back to back and
+   scrolled left by exactly half its width, so the loop point is seamless. */
+.skills-marquee {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 28px;
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+
+.skills-marquee__track {
+  display: flex;
+  width: max-content;
+  gap: 14px;
+  animation: skills-marquee 16s linear infinite;
+}
+
+.skills-marquee:hover .skills-marquee__track {
+  animation-play-state: paused;
+}
+
+.skills-marquee__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+.skills-marquee__icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+@keyframes skills-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Horizontal timeline: a single connecting line with year/dot/label
+   columns of matching fixed heights, so the dots always land on the line
+   regardless of label length. */
+.timeline {
+  margin-top: 56px;
+}
+
+.timeline__row {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.timeline__row::before {
+  content: '';
+  position: absolute;
+  top: 34px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-rows: 24px 20px auto;
+  justify-items: center;
+  gap: 6px;
+  max-width: 130px;
+}
+
+.timeline__year {
+  font-weight: 700;
+  font-size: 0.95rem;
+  align-self: end;
+}
+
+.timeline__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  align-self: center;
+  z-index: 1;
+}
+
+.timeline__label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 /* Navbar */
@@ -128,7 +254,10 @@
 }
 
 .hero-stage__curtain {
-  z-index: 2;
+  /* Above the Projects peek (2/3) so it's fully hidden underneath the
+     Welcome curtain until the curtain opens — Projects is always mounted,
+     not popped in only once the "about" stage is reached. */
+  z-index: 10;
   background: radial-gradient(circle at 50% 30%, var(--bg-alt), var(--bg) 70%);
   transition: transform var(--curtain-duration) cubic-bezier(0.65, 0, 0.35, 1);
   will-change: transform;
@@ -187,7 +316,7 @@
 .hero-stage__text {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 11;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -214,7 +343,7 @@
   bottom: 48px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 12;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -325,14 +454,22 @@
 .projects-panel {
   position: fixed;
   inset: 0;
-  /* Below the navbar (100), same as the hero stage, so the navbar stays on
-     top of whichever screen is currently "main" instead of being covered. */
-  z-index: 40;
+  /* Below the navbar (100) and the Welcome curtain (10) — always mounted,
+     so it's simply hidden under the curtain until that peels away, rather
+     than popping into existence once the "about" stage is reached. */
+  z-index: 2;
   background: #ffffff;
   transform: translateX(calc(100% - var(--peek-width)));
-  transition: transform 700ms cubic-bezier(0.65, 0, 0.35, 1);
+  transition: transform 700ms cubic-bezier(0.65, 0, 0.35, 1), opacity 0.25s ease;
   overflow-y: auto;
   cursor: pointer;
+}
+
+/* Once scrolled past About into Contact, the peek has no reason to sit
+   there — Contact should be the only thing on screen. */
+.projects-panel--offscreen {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .projects-panel.is-open {
@@ -373,17 +510,12 @@
   left: 0;
   bottom: 0;
   width: var(--peek-width);
-  z-index: 45;
+  z-index: 3;
   pointer-events: none;
 }
 
 .hero-peek.is-visible {
   pointer-events: auto;
-}
-
-/* Contact */
-.contact {
-  background: var(--bg);
 }
 
 .contact__content {
