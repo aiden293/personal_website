@@ -2,7 +2,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Now"
   },
   "hero": {
     "greeting": "Welcome",
@@ -11,55 +11,173 @@
   "about": {
     "title": "Who I Am",
     "name": "SangHyup Lee",
-    "role": "Software Engineer",
-    "bio": "I'm a developer who enjoys building thoughtful, well-crafted software. Replace this text with your own introduction."
+    "role": "Product Manager & Software Engineer",
+    "bio": "I build tools that helps people and enrich life and work better. Healthcare, Media, Web app, and AI agents from the bottom design to the top architecture.",
+    "email": "aidenshlee393@gmail.com"
   },
   "skills": {
     "eyebrow": "What I Use",
     "title": "Skills & Experience",
     "items": [
-      "TypeScript",
-      "React",
-      "Node.js",
       "Python",
-      "PostgreSQL",
-      "Docker",
-      "AWS",
-      "Git"
+      "MySQL",
+      "Java",
+      "HTML-5",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React.js",
+      "Node.js",
+      "NumPy",
+      "Django",
+      "REST",
+      "MongoDB",
+      "SQLite",
+      "Microsoft Excel",
+      "PowerPoint",
+      "Google Spreadsheets",
+      "Google Slides",
+      "Figma",
+      "PlantUML",
+      "Jira",
+      "Notion"
     ],
     "timeline": [
-      { "year": "2021", "label": "Milestone one" },
-      { "year": "2022", "label": "Milestone two" },
-      { "year": "2023", "label": "Milestone three" },
-      { "year": "2024", "label": "Milestone four" }
+      {
+        "year": "2021",
+        "label": "Milestone one",
+        "description": "A short note about what happened here. Replace with your own story."
+      },
+      {
+        "year": "2022",
+        "label": "Milestone two",
+        "description": "A short note about what happened here. Replace with your own story."
+      },
+      {
+        "year": "2023",
+        "label": "Milestone three",
+        "description": "A short note about what happened here. Replace with your own story."
+      },
+      {
+        "year": "2024",
+        "label": "Milestone four",
+        "description": "A short note about what happened here. Replace with your own story."
+      }
     ]
   },
-  "contact": {
-    "title": "Get in Touch",
-    "subtitle": "Feel free to reach out",
-    "email": "aidenshlee393@gmail.com",
-    "github": "GitHub",
-    "linkedin": "LinkedIn"
+  "current": {
+    "eyebrow": "Currently Building",
+    "title": "What I'm Working On",
+    "items": [
+      {
+        "name": "Project in progress",
+        "status": "In Progress",
+        "description": "A short note about what you're currently building and why. Replace with your own story.",
+        "link": "https://github.com/yourname/current-project",
+        "images": []
+      }
+    ]
   },
   "projects": {
     "tabLabel": "Projects",
     "title": "Selected Work",
     "close": "Close",
+    "backToList": "Back to projects",
+    "viewRepo": "View repository",
+    "problem": "Problem",
+    "responsibilities": "My Role & Responsibilities",
+    "impact": "Impact",
+    "tools": "Tools",
     "items": [
       {
-        "name": "Project One",
-        "description": "A short description of what this project does and the stack used.",
+        "name": "Cross-Platform Integration in AdpatX",
+        "description": "Gathering the separated CRM in different platforms and integrating them into one platform along with cron jobs by creating a individual website. This project is to improve the efficiency of the sales team and provide a better experience for our customers.",
+        "role": "Product Manager & Software Engineer",
+        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "responsibilities": [
+          "Defined the problem statement and success metrics",
+          "Ran discovery: user interviews, competitive research, requirements gathering",
+          "Wrote the PRD and prioritized the roadmap",
+          "Coordinated with engineering/design through delivery"
+        ],
+        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
+        "stack": ["TypeScript", "React", "Node.js"],
         "link": "https://github.com/yourname/project-one"
       },
       {
         "name": "Project Two",
-        "description": "A short description of what this project does and the stack used.",
+        "description": "A short summary of what this project does.",
+        "role": "Product Manager",
+        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "responsibilities": [
+          "Defined the problem statement and success metrics",
+          "Ran discovery: user interviews, competitive research, requirements gathering",
+          "Wrote the PRD and prioritized the roadmap",
+          "Coordinated with engineering/design through delivery"
+        ],
+        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
+        "stack": ["Python", "PostgreSQL"],
         "link": "https://github.com/yourname/project-two"
       },
       {
         "name": "Project Three",
-        "description": "A short description of what this project does and the stack used.",
+        "description": "A short summary of what this project does.",
+        "role": "Product Manager",
+        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "responsibilities": [
+          "Defined the problem statement and success metrics",
+          "Ran discovery: user interviews, competitive research, requirements gathering",
+          "Wrote the PRD and prioritized the roadmap",
+          "Coordinated with engineering/design through delivery"
+        ],
+        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
+        "stack": ["Java", "Docker", "AWS"],
         "link": "https://github.com/yourname/project-three"
+      },
+      {
+        "name": "Project Four",
+        "description": "A short summary of what this project does.",
+        "role": "Product Manager",
+        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "responsibilities": [
+          "Defined the problem statement and success metrics",
+          "Ran discovery: user interviews, competitive research, requirements gathering",
+          "Wrote the PRD and prioritized the roadmap",
+          "Coordinated with engineering/design through delivery"
+        ],
+        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
+        "stack": ["React", "TypeScript"],
+        "link": "https://github.com/yourname/project-four"
+      },
+      {
+        "name": "Project Five",
+        "description": "A short summary of what this project does.",
+        "role": "Product Manager",
+        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "responsibilities": [
+          "Defined the problem statement and success metrics",
+          "Ran discovery: user interviews, competitive research, requirements gathering",
+          "Wrote the PRD and prioritized the roadmap",
+          "Coordinated with engineering/design through delivery"
+        ],
+        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
+        "stack": ["Node.js", "PostgreSQL"],
+        "link": "https://github.com/yourname/project-five"
+      },
+      {
+        "name": "Project Six",
+        "description": "A short summary of what this project does.",
+        "role": "Product Manager",
+        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "responsibilities": [
+          "Defined the problem statement and success metrics",
+          "Ran discovery: user interviews, competitive research, requirements gathering",
+          "Wrote the PRD and prioritized the roadmap",
+          "Coordinated with engineering/design through delivery"
+        ],
+        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
+        "stack": ["Python", "Git"],
+        "link": "https://github.com/yourname/project-six"
       }
     ]
   }
