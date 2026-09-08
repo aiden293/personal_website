@@ -6,13 +6,14 @@ import { PhotoIcon } from './skillIcons'
 
 interface ProjectItem {
   name: string
+  company?: string
   description: string
   role: string
   problem: string
   responsibilities: string[]
   impact: string
   stack: string[]
-  link: string
+  link?: string
 }
 
 export default function ProjectsPanel() {
@@ -90,7 +91,10 @@ export default function ProjectsPanel() {
               </div>
 
               <h3>{items[selected].name}</h3>
-              <p className="project-detail__role">{items[selected].role}</p>
+              <p className="project-detail__role">
+                {items[selected].role}
+                {items[selected].company ? ` · ${items[selected].company}` : ''}
+              </p>
 
               <p className="project-detail__section-title">{t('projects.problem')}</p>
               <p className="project-detail__text">{items[selected].problem}</p>
@@ -112,15 +116,17 @@ export default function ProjectsPanel() {
                 ))}
               </div>
 
-              <a
-                className="project-detail__link"
-                href={items[selected].link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <ExternalLinkIcon />
-                {t('projects.viewRepo')}
-              </a>
+              {items[selected].link && (
+                <a
+                  className="project-detail__link"
+                  href={items[selected].link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <ExternalLinkIcon />
+                  {t('projects.viewRepo')}
+                </a>
+              )}
             </div>
           )}
         </div>

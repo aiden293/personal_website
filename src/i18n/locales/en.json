@@ -90,94 +90,94 @@
     "tools": "Tools",
     "items": [
       {
-        "name": "Cross-Platform Integration in AdpatX",
-        "description": "Gathering the separated CRM in different platforms and integrating them into one platform along with cron jobs by creating a individual website. This project is to improve the efficiency of the sales team and provide a better experience for our customers.",
-        "role": "Product Manager & Software Engineer",
-        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "name": "Cross-Platform Data Integration",
+        "company": "AdaptX",
+        "description": "Consolidated 10,000+ constituent records from three separate platforms into one CRM, cutting manual syncing for the sales team.",
+        "role": "Product Manager & Software Developer Intern",
+        "problem": "AdaptX's sales team managed constituent data across three separate platforms (Zeffy, RunSignUp, JotForm), creating duplicate records and forcing manual, error-prone syncing into their CRM (Bloomerang).",
         "responsibilities": [
-          "Defined the problem statement and success metrics",
-          "Ran discovery: user interviews, competitive research, requirements gathering",
-          "Wrote the PRD and prioritized the roadmap",
-          "Coordinated with engineering/design through delivery"
+          "Defined requirements for the cross-platform integration, translating business needs into technical specs",
+          "Architected an automated data integration pipeline using MCP and AI agents to sync the disparate platforms",
+          "Engineered an LLM-based deduplication layer and used Python/SQL to clean, restructure, and merge databases containing duplicates",
+          "Built a Notion workspace (Roadmap DB + Meeting Notes DB) to track project progress and decisions",
+          "Evaluated build-vs-integrate tradeoffs between continuing the CRM sync and building an in-house platform",
+          "Collaborated with engineering to align the mobile MVP with WCAG accessibility standards"
         ],
-        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
-        "stack": ["TypeScript", "React", "Node.js"],
-        "link": "https://github.com/yourname/project-one"
+        "impact": "Unified 10,000+ constituent records across three platforms into a single source of truth, removing manual deduplication as a recurring bottleneck for the sales team.",
+        "stack": ["Python", "SQL", "MCP", "Notion"]
       },
       {
-        "name": "Project Two",
-        "description": "A short summary of what this project does.",
+        "name": "TileTalk — Phonics Learning App",
+        "company": "Hack4Impact @ BU",
+        "description": "Product roadmap and requirements for an interactive phonics learning web app, replacing manual classroom tools.",
         "role": "Product Manager",
-        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "problem": "Teachers relied on manual, paper-based phonics tools that didn't scale well or fit modern classroom workflows.",
         "responsibilities": [
-          "Defined the problem statement and success metrics",
-          "Ran discovery: user interviews, competitive research, requirements gathering",
-          "Wrote the PRD and prioritized the roadmap",
-          "Coordinated with engineering/design through delivery"
+          "Built the product roadmap, translating classroom needs into prioritized technical requirements",
+          "Led Agile sprint planning and cross-functional coordination between design and engineering",
+          "Conducted user workflow analysis to surface inefficiencies in manual classroom tools",
+          "Proposed and championed digital solutions that were adopted by the team"
         ],
-        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
-        "stack": ["Python", "PostgreSQL"],
-        "link": "https://github.com/yourname/project-two"
+        "impact": "Shipped a prioritized feature roadmap on schedule through Agile sprints, replacing manual classroom tools with a coordinated digital workflow.",
+        "stack": ["Jira", "Figma", "Notion"],
+        "link": "https://github.com/yourname/tiletalk"
       },
       {
-        "name": "Project Three",
-        "description": "A short summary of what this project does.",
-        "role": "Product Manager",
-        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "name": "FrontFoot",
+        "description": "AI-powered scheduling assistant that turns constraints into a ready-made schedule using Google Calendar and Gemini.",
+        "role": "Developer",
+        "problem": "Manually building a schedule around existing commitments and personal constraints is slow and easy to get wrong.",
         "responsibilities": [
-          "Defined the problem statement and success metrics",
-          "Ran discovery: user interviews, competitive research, requirements gathering",
-          "Wrote the PRD and prioritized the roadmap",
-          "Coordinated with engineering/design through delivery"
+          "Developed an AI-powered scheduling assistant integrating the Google Calendar API and Gemini API",
+          "Designed automation workflows to generate schedules based on user input and constraints",
+          "Implemented API-based system architecture for real-time task management and calendar sync"
         ],
-        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
-        "stack": ["Java", "Docker", "AWS"],
-        "link": "https://github.com/yourname/project-three"
+        "impact": "Automated schedule generation and real-time calendar sync, removing manual back-and-forth scheduling.",
+        "stack": ["Google Calendar API", "Gemini API"],
+        "link": "https://github.com/yourname/frontfoot"
       },
       {
-        "name": "Project Four",
-        "description": "A short summary of what this project does.",
-        "role": "Product Manager",
-        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "name": "ATE!",
+        "description": "Mobile nutrition tracking app with an AI chatbot that analyzes food photos for gout patients.",
+        "role": "Product Manager & Developer",
+        "problem": "Gout patients need to track dietary triggers closely, but manual food logging is tedious and easy to abandon.",
         "responsibilities": [
-          "Defined the problem statement and success metrics",
-          "Ran discovery: user interviews, competitive research, requirements gathering",
-          "Wrote the PRD and prioritized the roadmap",
-          "Coordinated with engineering/design through delivery"
+          "Designed system architecture and defined data models for the mobile nutrition tracking app",
+          "Implemented an AI chatbot for image-based food analysis tailored to gout patients",
+          "Applied Agile methodology to manage the development lifecycle and feature prioritization"
         ],
-        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
-        "stack": ["React", "TypeScript"],
-        "link": "https://github.com/yourname/project-four"
+        "impact": "Replaced manual food logging with image-based AI analysis, lowering the effort needed to track dietary triggers.",
+        "stack": ["Python", "AI/ML", "Figma"],
+        "link": "https://github.com/yourname/ate"
       },
       {
-        "name": "Project Five",
-        "description": "A short summary of what this project does.",
+        "name": "MUSEEK",
+        "description": "Competitive analysis and product definition for a mentorship-driven collaboration platform for independent musicians.",
         "role": "Product Manager",
-        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "problem": "Independent and student musicians had no affordable, mentorship-driven alternative to existing gig-marketplace platforms like Fiverr, Sonicbids, and SoundBetter.",
         "responsibilities": [
-          "Defined the problem statement and success metrics",
-          "Ran discovery: user interviews, competitive research, requirements gathering",
-          "Wrote the PRD and prioritized the roadmap",
-          "Coordinated with engineering/design through delivery"
+          "Led competitive analysis (Fiverr, Sonicbids, SoundBetter), surfacing a market gap in affordable, mentorship-driven collaboration tools",
+          "Synthesized user research on independent/student musicians into product OKRs",
+          "Defined core features: discovery algorithm, analytics dashboard, messaging"
         ],
-        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
-        "stack": ["Node.js", "PostgreSQL"],
-        "link": "https://github.com/yourname/project-five"
+        "impact": "Turned market research into a scoped, validated feature set aligned to an identified market gap.",
+        "stack": ["Product Strategy", "User Research", "Figma"],
+        "link": "https://github.com/yourname/museek"
       },
       {
-        "name": "Project Six",
-        "description": "A short summary of what this project does.",
-        "role": "Product Manager",
-        "problem": "What problem or opportunity kicked this off, and for whom. Replace with your own story.",
+        "name": "E-Commerce Growth Analytics",
+        "company": "Halal Road",
+        "description": "Analyzed e-commerce user behavior and built KPI dashboards that shaped a new business expansion decision.",
+        "role": "Business Data Analytics Intern",
+        "problem": "Leadership lacked real-time visibility into user retention and engagement, making it hard to evaluate whether to expand into a new business line.",
         "responsibilities": [
-          "Defined the problem statement and success metrics",
-          "Ran discovery: user interviews, competitive research, requirements gathering",
-          "Wrote the PRD and prioritized the roadmap",
-          "Coordinated with engineering/design through delivery"
+          "Analyzed e-commerce user behavior (~500 monthly users) using Python and Excel to surface retention trends",
+          "Built automated dashboards tracking KPIs including session activity and repeat purchase rate",
+          "Presented data-driven insights to management"
         ],
-        "impact": "The measurable outcome — adoption, time saved, revenue, etc. Replace with real numbers once you have them.",
-        "stack": ["Python", "Git"],
-        "link": "https://github.com/yourname/project-six"
+        "impact": "Insights directly shaped management's decision to expand into halal-focused lodging services.",
+        "stack": ["Python", "Excel"],
+        "link": "https://github.com/yourname/halal-road-analytics"
       }
     ]
   }
