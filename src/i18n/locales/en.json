@@ -120,7 +120,7 @@
         ],
         "impact": "Shipped a prioritized feature roadmap on schedule through Agile sprints, replacing manual classroom tools with a coordinated digital workflow.",
         "stack": ["Jira", "Figma", "Notion"],
-        "link": "https://github.com/yourname/tiletalk"
+        "link": "https://github.com/aiden293/phonics-team.git"
       },
       {
         "name": "FrontFoot",
@@ -134,7 +134,7 @@
         ],
         "impact": "Automated schedule generation and real-time calendar sync, removing manual back-and-forth scheduling.",
         "stack": ["Google Calendar API", "Gemini API"],
-        "link": "https://github.com/yourname/frontfoot"
+        "link": "https://github.com/aiden293/FrontFoot"
       },
       {
         "name": "ATE!",
@@ -148,7 +148,7 @@
         ],
         "impact": "Replaced manual food logging with image-based AI analysis, lowering the effort needed to track dietary triggers.",
         "stack": ["Python", "AI/ML", "Figma"],
-        "link": "https://github.com/yourname/ate"
+        "link": "https://github.com/aiden293/ATE-_Nutrition_Tracking_App.git"
       },
       {
         "name": "MUSEEK",
@@ -162,7 +162,7 @@
         ],
         "impact": "Turned market research into a scoped, validated feature set aligned to an identified market gap.",
         "stack": ["Product Strategy", "User Research", "Figma"],
-        "link": "https://github.com/yourname/museek"
+        "link": "https://www.figma.com/design/vzp5InzUZI3YWCv9qggpLa/MuSeek-User-Stories-and-Flows?node-id=0-1&t=QeSZqORhynJays0g-1"
       },
       {
         "name": "E-Commerce Growth Analytics",
@@ -176,8 +176,7 @@
           "Presented data-driven insights to management"
         ],
         "impact": "Insights directly shaped management's decision to expand into halal-focused lodging services.",
-        "stack": ["Python", "Excel"],
-        "link": "https://github.com/yourname/halal-road-analytics"
+        "stack": ["Python", "Excel"]
       }
     ]
   }
