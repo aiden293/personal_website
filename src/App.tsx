@@ -19,11 +19,11 @@ type Lens = 'All' | 'Product' | 'Solutions' | 'Data'
 
 const projectMeta = [
   { lens: 'Solutions' as Lens, period: 'May — Jul 2026', image: '/images/projects/12 (1).png', tone: 'mint' },
-  { lens: 'Product' as Lens, period: 'Jan — May 2026', image: '/images/projects/hack4impact-overview.png', tone: 'blue' },
+  { lens: 'Product' as Lens, period: 'Jan — May 2026', image: '/images/projects/TileTalk_main.png', tone: 'blue' },
   { lens: 'Solutions' as Lens, period: '2026', image: '', tone: 'violet' },
   { lens: 'Product' as Lens, period: 'Sep — Dec 2025', image: '', tone: 'coral' },
   { lens: 'Product' as Lens, period: 'Sep — Dec 2024', image: '/images/projects/museek-overview.png', tone: 'dark' },
-  { lens: 'Data' as Lens, period: 'Jun — Aug 2025', image: '', tone: 'sand' },
+  { lens: 'Data' as Lens, period: 'Jun — Aug 2025', image: '/images/projects/halal_road_main.png', tone: 'sand' },
 ]
 
 const experience = [
@@ -261,6 +261,17 @@ function App() {
                 <section><span>01</span><div><h3>{copy.challenge}</h3><p>{selectedProject.problem}</p></div></section>
                 <section><span>02</span><div><h3>{copy.contribution}</h3><ul>{selectedProject.responsibilities.map((item) => <li key={item}>{item}</li>)}</ul></div></section>
                 <section><span>03</span><div><h3>{copy.outcome}</h3><p>{selectedProject.impact}</p></div></section>
+                {selected === 1 && (
+                  <video
+                    className="case-video"
+                    controls
+                    playsInline
+                    preload="metadata"
+                  >
+                    <source src="/videos/tiletalk-demo.mp4" type="video/mp4" />
+                    Your browser does not support video playback.
+                  </video>
+                )}
                 {selected === 1 && <img className="case-extra" src="/images/projects/hack4impact-process.png" alt="Hack4Impact workflow and process" />}
                 {selected === 4 && <img className="case-extra" src="/images/projects/museek-research.png" alt="MuSeek research and competitive analysis" />}
                 {selectedProject.link && <a className="button button--primary" href={selectedProject.link} target="_blank" rel="noreferrer">Open project <ArrowIcon /></a>}
