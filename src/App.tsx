@@ -19,9 +19,9 @@ type Lens = 'All' | 'Product' | 'Solutions' | 'Data'
 
 const projectMeta = [
   { lens: 'Solutions' as Lens, period: 'May — Jul 2026', image: '/images/projects/12 (1).png', tone: 'mint' },
-  { lens: 'Product' as Lens, period: 'Jan — May 2026', image: '/images/projects/TileTalk_main.png', tone: 'blue' },
+  { lens: 'Product' as Lens, period: 'Jan — May 2026', image: '/images/projects/TileTalk_main.png', video: '/videos/tiletalk-demo.mp4', tone: 'blue' },
   { lens: 'Solutions' as Lens, period: '2026', image: '', tone: 'violet' },
-  { lens: 'Product' as Lens, period: 'Sep — Dec 2025', image: '', tone: 'coral' },
+  { lens: 'Product' as Lens, period: 'Sep — Dec 2025', image: '/images/projects/Ate_Thumb.png', video: '/videos/ate-demo.mp4', tone: 'coral' },
   { lens: 'Product' as Lens, period: 'Sep — Dec 2024', image: '/images/projects/museek-overview.png', tone: 'dark' },
   { lens: 'Data' as Lens, period: 'Jun — Aug 2025', image: '/images/projects/halal_road_main.png', tone: 'sand' },
 ]
@@ -261,14 +261,14 @@ function App() {
                 <section><span>01</span><div><h3>{copy.challenge}</h3><p>{selectedProject.problem}</p></div></section>
                 <section><span>02</span><div><h3>{copy.contribution}</h3><ul>{selectedProject.responsibilities.map((item) => <li key={item}>{item}</li>)}</ul></div></section>
                 <section><span>03</span><div><h3>{copy.outcome}</h3><p>{selectedProject.impact}</p></div></section>
-                {selected === 1 && (
+                {projectMeta[selected].video && (
                   <video
                     className="case-video"
                     controls
                     playsInline
                     preload="metadata"
                   >
-                    <source src="/videos/tiletalk-demo.mp4" type="video/mp4" />
+                    <source src={projectMeta[selected].video} type="video/mp4" />
                     Your browser does not support video playback.
                   </video>
                 )}
