@@ -92,34 +92,31 @@
       {
         "name": "Cross-Platform Data Integration",
         "company": "AdaptX",
-        "description": "Consolidated 10,000+ constituent records from three separate platforms into one CRM, cutting manual syncing for the sales team.",
-        "role": "Product Manager & Software Developer Intern",
-        "problem": "AdaptX's sales team managed constituent data across three separate platforms (Zeffy, RunSignUp, JotForm), creating duplicate records and forcing manual, error-prone syncing into their CRM (Bloomerang).",
+        "description": "Delivered deduplication for 10,000+ donor records across four disconnected platforms, with a staff review workflow for uncertain matches.",
+        "role": "Software Developer Intern",
+        "problem": "Nonprofit staff tracked donor data across Zeffy, RunSignUp, JotForm, and Bloomerang, leaving 10,000+ records fragmented across four data structures with duplicates that could not always be resolved automatically.",
         "responsibilities": [
-          "Defined requirements for the cross-platform integration, translating business needs into technical specs",
-          "Architected an automated data integration pipeline using MCP and AI agents to sync the disparate platforms",
-          "Engineered an LLM-based deduplication layer and used Python/SQL to clean, restructure, and merge databases containing duplicates",
-          "Built a Notion workspace (Roadmap DB + Meeting Notes DB) to track project progress and decisions",
-          "Evaluated build-vs-integrate tradeoffs between continuing the CRM sync and building an in-house platform",
-          "Collaborated with engineering to align the mobile MVP with WCAG accessibility standards"
+          "Gathered requirements from nonprofit staff and scoped a unified CRM view across four disconnected platforms",
+          "Built Python and NumPy cleaning and deduplication workflows for 10,000+ records",
+          "Created a review dashboard that let staff approve uncertain record matches instead of relying on blind automation",
+          "Compared an in-house build with third-party CRM connectors on cost, data ownership, and delivery timeline, then presented the tradeoffs"
         ],
-        "impact": "Unified 10,000+ constituent records across three platforms into a single source of truth, removing manual deduplication as a recurring bottleneck for the sales team.",
-        "stack": ["Python", "SQL", "MCP", "Notion"]
+        "impact": "Delivered a human-in-the-loop deduplication workflow for 10,000+ records and gave the team evidence to choose an implementation path across four data sources.",
+        "stack": ["Python", "NumPy", "SQL", "Notion"]
       },
       {
         "name": "TileTalk — Phonics Learning App",
         "company": "Hack4Impact @ BU",
-        "description": "Product roadmap and requirements for an interactive phonics learning web app, replacing manual classroom tools.",
+        "description": "Turned ~20 requests from a 2nd-grade teacher into 7 core features, then coordinated delivery of 16 features by the May deadline.",
         "role": "Product Manager",
-        "problem": "Teachers relied on manual, paper-based phonics tools that didn't scale well or fit modern classroom workflows.",
+        "problem": "A 2nd-grade teacher needed a digital phonics tool, but roughly 20 competing requests, a multi-disciplinary team, and a $0 operating budget made scope and infrastructure choices critical.",
         "responsibilities": [
-          "Built the product roadmap, translating classroom needs into prioritized technical requirements",
-          "Led Agile sprint planning and cross-functional coordination between design and engineering",
-          "Conducted user workflow analysis to surface inefficiencies in manual classroom tools",
-          "Proposed and championed digital solutions that were adopted by the team"
+          "Synthesized ~20 classroom requests into 7 core features and a phased product roadmap",
+          "Evaluated backend and authentication options and moved login and data from Clever to Supabase to maintain a $0 operating cost",
+          "Led biweekly reviews and Jira delivery across the client, a UI designer, and a 6-person engineering team"
         ],
-        "impact": "Shipped a prioritized feature roadmap on schedule through Agile sprints, replacing manual classroom tools with a coordinated digital workflow.",
-        "stack": ["Jira", "Figma", "Notion"],
+        "impact": "Shipped 16 features, including all 7 core features, by the May deadline while keeping the product at $0 operating cost.",
+        "stack": ["Jira", "Figma", "Supabase", "Notion"],
         "link": "https://github.com/aiden293/phonics-team.git"
       },
       {
@@ -138,16 +135,16 @@
       },
       {
         "name": "ATE!",
-        "description": "Mobile nutrition tracking app with an AI chatbot that analyzes food photos for gout patients.",
-        "role": "Product Manager & Developer",
-        "problem": "Gout patients need to track dietary triggers closely, but manual food logging is tedious and easy to abandon.",
+        "description": "Built a nutrition tracking product backed by 7,327 USDA foods across 24 categories and roughly 140,000 nutrient values.",
+        "role": "Product Manager & Backend Developer",
+        "problem": "Food search, meal logging, and personalized nutrition insights required a reliable data foundation, relevant search results, and APIs that could support multiple user workflows.",
         "responsibilities": [
-          "Designed system architecture and defined data models for the mobile nutrition tracking app",
-          "Implemented an AI chatbot for image-based food analysis tailored to gout patients",
-          "Applied Agile methodology to manage the development lifecycle and feature prioritization"
+          "Built an ETL pipeline that loaded USDA FoodData Central into a searchable database of 7,327 foods, 24 categories, and ~140,000 nutrient values",
+          "Filtered chain-restaurant entries to improve search relevance and structured the data for product use",
+          "Designed REST APIs for food search, meal logging, weekly analysis, and personalized suggestions"
         ],
-        "impact": "Replaced manual food logging with image-based AI analysis, lowering the effort needed to track dietary triggers.",
-        "stack": ["Python", "AI/ML", "Figma"],
+        "impact": "Converted a large public nutrition dataset into a product-ready search and analytics foundation supporting 7,327 foods and four core user workflows.",
+        "stack": ["Python", "Flask", "React", "REST APIs", "ETL"],
         "link": "https://github.com/aiden293/ATE-_Nutrition_Tracking_App.git"
       },
       {
@@ -167,15 +164,15 @@
       {
         "name": "E-Commerce Growth Analytics",
         "company": "Halal Road",
-        "description": "Analyzed e-commerce user behavior and built KPI dashboards that shaped a new business expansion decision.",
+        "description": "Analyzed ~500 monthly e-commerce users and built automated KPI dashboards to identify retention trends and growth opportunities.",
         "role": "Business Data Analytics Intern",
-        "problem": "Leadership lacked real-time visibility into user retention and engagement, making it hard to evaluate whether to expand into a new business line.",
+        "problem": "Leadership lacked real-time visibility into session activity, repeat purchase rate, and retention trends needed to evaluate the company's next growth opportunity.",
         "responsibilities": [
-          "Analyzed e-commerce user behavior (~500 monthly users) using Python and Excel to surface retention trends",
-          "Built automated dashboards tracking KPIs including session activity and repeat purchase rate",
-          "Presented data-driven insights to management"
+          "Analyzed behavior from ~500 monthly users in Python to surface retention patterns",
+          "Built automated KPI dashboards tracking session activity and repeat purchase rate",
+          "Translated the findings into a recommendation to expand from online retail into accommodation"
         ],
-        "impact": "Insights directly shaped management's decision to expand into halal-focused lodging services.",
+        "impact": "Gave leadership real-time performance visibility and an evidence-backed recommendation to expand into halal-focused accommodation.",
         "stack": ["Python", "Excel"]
       }
     ]
