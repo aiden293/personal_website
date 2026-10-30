@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './App.css'
 import { SOCIAL_LINKS } from './lib/socialLinks'
@@ -42,6 +42,13 @@ const skillGroups = [
   { title: 'Tools', skills: ['Jira', 'Notion', 'Figma', 'Git / GitHub', 'PlantUML'] },
 ]
 
+const tileTalkSlides = [
+  { label: 'Problem Statement', image: '/images/projects/tiletalk-slides/TT_ProblemStatement.png' },
+  { label: 'OKR 1', image: '/images/projects/tiletalk-slides/TT_OKR1.png' },
+  { label: 'OKR 2', image: '/images/projects/tiletalk-slides/TT_OKR2.png' },
+  { label: 'Inspiration', image: '/images/projects/tiletalk-slides/TT_Inspiration.png' },
+]
+
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true">
@@ -67,6 +74,68 @@ function ProjectVisual({ project, index, compact = false }: { project: Project; 
           <i />
         </div>
       )}
+    </div>
+  )
+}
+
+function TileTalkSlideshow() {
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const touchStart = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const interval = window.setInterval(
+      () => setActive((current) => (current + 1) % tileTalkSlides.length),
+      5000,
+    )
+    return () => window.clearInterval(interval)
+  }, [active, paused])
+
+  const showPrevious = () => setActive((current) => (current - 1 + tileTalkSlides.length) % tileTalkSlides.length)
+  const showNext = () => setActive((current) => (current + 1) % tileTalkSlides.length)
+
+  return (
+    <div
+      className="case-slideshow"
+      role="region"
+      aria-label="TileTalk project slides"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={(event) => { touchStart.current = event.touches[0].clientX }}
+      onTouchEnd={(event) => {
+        if (touchStart.current === null) return
+        const distance = touchStart.current - event.changedTouches[0].clientX
+        if (Math.abs(distance) > 40) distance > 0 ? showNext() : showPrevious()
+        touchStart.current = null
+      }}
+    >
+      <div className="case-slideshow__viewport">
+        <div className="case-slideshow__track" style={{ transform: `translate3d(-${active * 100}%, 0, 0)` }}>
+          {tileTalkSlides.map((slide, index) => (
+            <figure className="case-slideshow__slide" key={slide.label} aria-hidden={index !== active}>
+              <img src={slide.image} alt={`TileTalk ${slide.label}`} loading="eager" decoding="async" />
+            </figure>
+          ))}
+        </div>
+      </div>
+      <button type="button" className="case-slideshow__arrow case-slideshow__arrow--previous" onClick={showPrevious} aria-label="Previous slide">‹</button>
+      <button type="button" className="case-slideshow__arrow case-slideshow__arrow--next" onClick={showNext} aria-label="Next slide">›</button>
+      <div className="case-slideshow__footer">
+        <span>{String(active + 1).padStart(2, '0')} / {String(tileTalkSlides.length).padStart(2, '0')} · {tileTalkSlides[active].label}</span>
+        <div className="case-slideshow__dots" aria-label="Choose a slide">
+          {tileTalkSlides.map((slide, index) => (
+            <button
+              type="button"
+              key={slide.label}
+              className={index === active ? 'is-active' : ''}
+              onClick={() => setActive(index)}
+              aria-label={`Show ${slide.label}`}
+              aria-current={index === active ? 'true' : undefined}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
@@ -272,7 +341,7 @@ function App() {
                     Your browser does not support video playback.
                   </video>
                 )}
-                {selected === 1 && <img className="case-extra" src="/images/projects/hack4impact-process.png" alt="Hack4Impact workflow and process" />}
+                {selected === 1 && <TileTalkSlideshow />}
                 {selected === 4 && <img className="case-extra" src="/images/projects/museek-research.png" alt="MuSeek research and competitive analysis" />}
                 {selectedProject.link && <a className="button button--primary" href={selectedProject.link} target="_blank" rel="noreferrer">Open project <ArrowIcon /></a>}
               </div>
